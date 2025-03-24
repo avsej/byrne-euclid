@@ -19,13 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     container: texlive/texlive:latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       - name: Build lettrines
         run: mpost lettrines.mp
         working-directory: lettrines
-        
+
       - name: Get fresh byrne-latex
         run: git clone https://github.com/jemmybutton/byrne-latex.git && cp byrne-latex/byrne.* .
 
@@ -35,7 +35,7 @@ jobs:
       - name: Build Russian pdf
         run: lualatex -interaction=nonstopmode byrne-ru-latex.tex && lualatex -interaction=nonstopmode byrne-ru-latex.tex
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: pdfs
           path: byrne*latex.pdf
